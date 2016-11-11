@@ -11,5 +11,7 @@ countries <- levels(worldpopulation$Country.Name)
 
 #NL en Korea filteren
 nlzkdata <- subset(worldpopulation,worldpopulation$Country.Name == "Korea, Rep." |   worldpopulation$Country.Name == "Netherlands")
-t(nlzkdata)
-help(t)
+nlzkdata
+
+names(colnames(nlzkdata[5:62])) <- substring(names(nlzkdata[5:62]),2)
+nlzkdata
