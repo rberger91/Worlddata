@@ -28,11 +28,21 @@ head(nlzkdata)
 
 help(matplot)
 matplot(nlzkdata$variable[nlzkdata$country.name == "Korea, Rep."],nlzkdata$value[nlzkdata$country.name == "Korea, Rep."]/1000, type = "l", ylim = c(0,55000),
-        col = "red", main = "national population growth", ylab = "size of population ( x 1000)", xlab = "years")
+        col = "red", main = "national population growth in numbers", ylab = "size of population ( x 1000)", xlab = "years")
 matplot(nlzkdata$variable[nlzkdata$country.name == "Netherlands"],nlzkdata$value[nlzkdata$country.name == "Netherlands"]/1000, type = "l", add = T, 
         col = "blue")
 help(legend)
 legend(x = 1960, y = 55000, legend = unique(nlzkdata$country.name), fill = c("red","blue"))
 
-# lines(nlzkdata$variable[nlzkdata$country.name=="Netherlands"],nlzkdata$value[nlzkdata$country.name=="Netherlands"]/1000)
-# help(lines)
+#Nu relatieve groei proberen te plotten. Deze visualisatie is namelelijk niet heel erg bruikbaar
+write.csv(nlzkdata, "C://Users//Robbin Berger//Documents//data files//nlzkdata.csv", append = T, quote = T)
+    #in excel de relatieve getallen erbij gezet..... 
+nlzkdata <- read.table("~//data files//nlzkdata.csv", header = T, sep = ";")
+head(nlzkdata)
+
+matplot(nlzkdata$variable[nlzkdata$country.name == "Korea"],nlzkdata$relative[nlzkdata$country.name == "Korea"], type = "l",
+        col = "red", main = "national population growth in numbers", ylab = "size of population ( x 1000)", xlab = "years")
+matplot(nlzkdata$variable[nlzkdata$country.name == "Netherlands"],nlzkdata$relative[nlzkdata$country.name == "Netherlands"], type = "l", add = T, 
+        col = "blue")
+help(legend)
+legend(x = 1960, y = 55000, legend = unique(nlzkdata$country.name), fill = c("red","blue"))
